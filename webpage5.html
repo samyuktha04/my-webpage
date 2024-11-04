@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Land Surveyor's Toolkit</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body and Background Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background: url('your-background-image.jpg') no-repeat center center fixed; /* Replace with your image */
+      background-size: cover;
+      color: #333;
+    }
+
+    /* Dark overlay for better readability on background image */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #444;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .navbar a {
+      padding: 14px 20px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: #575757;
+    }
+
+    /* Content Sections */
+    .page-container {
+      display: none;
+      position: relative;
+      top: 60px; /* Offset by navbar height */
+      width: 100%;
+      height: calc(100vh - 60px); /* Full viewport height minus navbar height */
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9); /* Light background for readability */
+      overflow-y: auto;
+    }
+
+    /* Set the active page to display */
+    .active {
+      display: block !important;
+    }
+
+    /* Button Styling */
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+
+    /* Input Field Styling */
+    input[type="text"],
+    input[type="password"],
+    input[type="number"],
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Dark Overlay for background contrast -->
+  <div class="overlay"></div>
+
+  <!-- Navigation Bar -->
+  <div class="navbar" id="navbar">
+    <a onclick="showPage('uploadContainer')">Home</a>
+    <a onclick="showPage('gpsContainer')">GPS</a>
+    <a onclick="showPage('calculatorContainer')">Calculator</a>
+    <a onclick="showPage('pendingCasesContainer')">Pending Cases</a>
+  </div>
+
+  <div class="content">
+    <!-- Login Page -->
+    <div class="page-container active" id="loginContainer">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button onclick="login()">Login</button>
+      <p id="loginError" style="color: red; display: none">Invalid username or password</p>
+    </div>
+
+    <!-- File Upload Page (Home Page) -->
+    <div class="page-container" id="uploadContainer">
+      <h2>Upload File</h2>
+      <input type="file" id="fileInput" />
+      <button onclick="uploadFile()">Upload</button>
+      <p id="uploadMessage" style="color: green; display: none">File uploaded successfully!</p>
+    </div>
+
+    <!-- GPS Page -->
+    <div class="page-container" id="gpsContainer">
+      <h2>GPS Location</h2>
+      <button onclick="getLocation()">Get Location</button>
+      <p id="locationMessage" style="color: blue"></p>
+    </div>
+
+    <!-- Calculator Page -->
+    <div class="page-container" id="calculatorContainer">
+      <h2>Land Unit Converter</h2>
+      <label for="unitValue">Enter Value:</label>
+      <input type="number" id="unitValue" placeholder="Enter value" required />
+      <label for="unitFrom">From:</label>
+      <select id="unitFrom">
+        <option value="cent">Cent</option>
+        <option value="acre">Acre</option>
+        <option value="sq_meter">Square Meter</option>
+        <option value="sq_ft">Square Foot</option>
+      </select>
+      <label for="unitTo">To:</label>
+      <select id="unitTo">
+        <option value="cent">Cent</option>
+        <option value="acre">Acre</option>
+        <option value="sq_meter">Square Meter</option>
+        <option value="sq_ft">Square Foot</option>
+      </select>
+      <button onclick="convertUnits()">Convert</button>
+      <p id="conversionResult" style="color: blue"></p>
+    </div>
+
+    <!-- Pending Cases Page -->
+    <div class="page-container" id="pendingCasesContainer">
+      <h2>Pending Cases</h2>
+      <input type="text" id="surveyNumber" placeholder="Enter Survey Number" required />
+      <input type="number" id="area" placeholder="Enter Area (sq. m)" required />
+      <input type="date" id="caseDate" required />
+      <button onclick="savePendingCase()">Save Case</button>
+      <p id="caseMessage" style="color: green; display: none">Case saved successfully!</p>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript functions for login, navigation, file upload, etc.
+    // Make sure to define the showPage, login, getLocation, convertUnits, uploadFile, and savePendingCase functions in JavaScript.
+  </script>
+</body>
+</html>
